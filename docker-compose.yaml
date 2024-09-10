@@ -1,0 +1,33 @@
+services:
+  web:
+    image: nginx:1.25-alpine
+    container_name: ${PROJECT_NAME}_nginx
+    ports:
+    - "80:80"
+    environment:
+      - PROJECT_NAME=${PROJECT_NAME}
+    volumes:
+      - "./www:/var/www/${PROJECT_NAME}:rw"
+      - "./.docker/nginx/nginx.conf:/etc/nginx/conf.d/site.template:rw"
+    command: sh -c "envsubst '$$PROJECT_NAME' < /etc/nginx/conf.d/site.template > /etc/nginx/conf.d/default.conf && exec nginx -g 'daemon off;'"
+
+  php:
+    build: ./.docker/php
+    working_dir: /var/www/${PROJECT_NAME}
+    container_name: ${PROJECT_NAME}_php
+    volumes:
+      - "./www:/var/www/${PROJECT_NAME}:rw"
+    command: bash -c "composer install && php-fpm"
+
+  mysql: 
+    image: mysql:8.0
+    container_name: ${PROJECT_NAME}_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}  
+      MYSQL_DATABASE: ${MYSQL_DATABASE}       
+      MYSQL_USER: ${MYSQL_USER}                  
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}      
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./www/sql:/docker-entrypoint-initdb.d
