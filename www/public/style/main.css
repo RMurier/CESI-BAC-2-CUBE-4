@@ -2160,7 +2160,6 @@ footer .f-lang .btn-default {
   text-align: left;
 }
 
-@media (min-width: 100px) and (max-width: 1365px) {
   .banner-text {
     position: relative;
     top: 0;
@@ -2198,7 +2197,6 @@ footer .f-lang .btn-default {
   .login-wraper .login-window .l-form {
     padding: 25px 20px;
   }
-}
 /*
 * Content Account END
 */
