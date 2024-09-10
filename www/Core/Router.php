@@ -126,13 +126,15 @@ class Router
                     $controller_object->$action();
 
                 } else {
-                    throw new \Exception("Method $action in controller $controller cannot be called directly - remove the Action suffix to call this method");
-                }
+                    $twig = new \Twig\Environment(new \Twig\Loader\FilesystemLoader('../App/Views'));
+                    echo $twig->render('404.html');                }
             } else {
-                throw new \Exception("Controller class $controller not found");
+                $twig = new \Twig\Environment(new \Twig\Loader\FilesystemLoader('../App/Views'));
+                echo $twig->render('404.html');
             }
         } else {
-            throw new \Exception('No route matched.', 404);
+            $twig = new \Twig\Environment(new \Twig\Loader\FilesystemLoader('../App/Views'));
+            echo $twig->render('404.html');
         }
     }
 
