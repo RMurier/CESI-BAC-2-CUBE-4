@@ -21,15 +21,15 @@
                     Connexion
                 </div>
                 <div class="l-form">
-                    <form action="" method="post">
+                    <form action="/user/login" method="post">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Email</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" name="email"
+                            <label for="loginEmail">Email</label>
+                            <input type="email" class="form-control" id="loginEmail" name="email"
                                    placeholder="sample@gmail.com">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Mot de passe</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1"
+                            <label for="loginPassword">Mot de passe</label>
+                            <input type="password" class="form-control" id="loginPassword"
                                    name="password" placeholder="**********">
                         </div>
                         <div class="checkbox">
@@ -42,21 +42,21 @@
                             </label>
                         </div>
                         <div class="row">
-                            <div
-                                    class="col-lg-7"><button type="submit" name="submit" class="btn btn-cv1">Connexion
-                                </button></div>
-                            <div class="hidden-xs">
-                                <div class="col-lg-1 ortext">or</div>
-                                <div class="col-lg-4 signuptext"><a href="signup.html">Inscription</a></div>
-                            </div>
+                                <button type="submit" name="submit" class="btn btn-cv1">Connexion</button>
                         </div>
-                        <div class="row hidden-xs">
-                            <div class="col-lg-12 forgottext">
-                                <a href="#">Mot de passe oublié ?</a>
-                            </div>
+                        <div class="row">
+                            <span style="text-align: center; display: flex; justify-content: center;">ou</span>
                         </div>
-                    </form>
-                </div>
+                        <div class="row">
+                            <button class="btn btn-cv1" href="/register">Inscription</a>
+                        </div>
+                    </div>
+                    <div class="row hidden-xs">
+                        <div class="col-lg-12 forgottext">
+                            <a href="#">Mot de passe oublié ?</a>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

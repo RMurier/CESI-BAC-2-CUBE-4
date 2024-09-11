@@ -1,66 +1,102 @@
 <?php
-
 namespace App\Models;
 
-use App\Utility\Hash;
-use Core\Model;
-use App\Core;
-use Exception;
-use App\Utility;
+use PDO;
 
-/**
- * User Model:
- */
-class User extends Model {
-
+class User extends \Core\Model
+{
     /**
-     * Crée un utilisateur
+     * Crée un utilisateur dans la base de données
+     * 
+     * @param array $data Tableau contenant 'email', 'username', 'password', 'salt'
+     * 
+     * @return int|bool Retourne l'ID de l'utilisateur créé, ou false en cas d'échec
      */
-    public static function createUser($data) {
-        $db = static::getDB();
-
-        $stmt = $db->prepare('INSERT INTO users(username, email, password, salt) VALUES (:username, :email, :password,:salt)');
-
-        $stmt->bindParam(':username', $data['username']);
-        $stmt->bindParam(':email', $data['email']);
-        $stmt->bindParam(':password', $data['password']);
-        $stmt->bindParam(':salt', $data['salt']);
-
-        $stmt->execute();
-
-        return $db->lastInsertId();
-    }
-
-    public static function getByLogin($login)
+    public static function createUser($data)
     {
         $db = static::getDB();
+        $stmt = $db->prepare('
+            INSERT INTO users (email, username, password, salt)
+            VALUES (:email, :username, :password, :salt)
+        ');
 
-        $stmt = $db->prepare("
-            SELECT * FROM users WHERE ( users.email = :email) LIMIT 1
-        ");
+        // Lier les valeurs des paramètres
+        $stmt->bindValue(':email', $data['email'], PDO::PARAM_STR);
+        $stmt->bindValue(':username', $data['username'], PDO::PARAM_STR);
+        $stmt->bindValue(':password', $data['password'], PDO::PARAM_STR);
+        $stmt->bindValue(':salt', $data['salt'], PDO::PARAM_STR);
 
-        $stmt->bindParam(':email', $login);
-        $stmt->execute();
+        // Exécuter et vérifier l'insertion
+        if ($stmt->execute()) {
+            return $db->lastInsertId();  // Retourner l'ID de l'utilisateur créé
+        }
 
-        return $stmt->fetch(\PDO::FETCH_ASSOC);
+        return false;  // Retourner false en cas d'échec
     }
-
 
     /**
-     * ?
-     * @access public
-     * @return string|boolean
-     * @throws Exception
+     * Récupère un utilisateur par email pour l'authentification
+     * 
+     * @param string $email L'email de l'utilisateur
+     * 
+     * @return array|bool Retourne les données de l'utilisateur ou false si non trouvé
      */
-    public static function login() {
+    public static function getByLogin($email)
+    {
         $db = static::getDB();
+        $stmt = $db->prepare('SELECT * FROM users WHERE email = :email');
+        $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+        $stmt->execute();
 
-        $stmt = $db->prepare('SELECT * FROM articles WHERE articles.id = ? LIMIT 1');
-
-        $stmt->execute([$id]);
-
-        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    /**
+     * Stocke un token de "remember me" pour l'auto-login
+     * 
+     * @param int $userID ID de l'utilisateur
+     * @param string $token Token généré pour l'auto-login
+     * @param int $expiry Timestamp de l'expiration du token
+     * 
+     * @return void
+     */
+    public static function storeRememberToken($userID, $token, $expiry)
+    {
+        $db = static::getDB();
+        $stmt = $db->prepare('
+            INSERT INTO user_tokens (user_id, token, expiry)
+            VALUES (:user_id, :token, :expiry)
+        ');
 
+        $stmt->bindValue(':user_id', $userID, PDO::PARAM_INT);
+        $stmt->bindValue(':token', $token, PDO::PARAM_STR);
+        $stmt->bindValue(':expiry', $expiry, PDO::PARAM_INT);
+        $stmt->execute();
+    }
+
+    /**
+     * Récupère un utilisateur par token pour l'auto-login
+     * 
+     * @param string $token Le token "remember me"
+     * 
+     * @return array|bool Retourne les données de l'utilisateur ou false si non trouvé
+     */
+    public static function getUserByToken($token)
+    {
+        $db = static::getDB();
+        $stmt = $db->prepare('
+            SELECT users.* 
+            FROM users 
+            INNER JOIN user_tokens 
+            ON users.id = user_tokens.user_id 
+            WHERE user_tokens.token = :token 
+            AND user_tokens.expiry > :now
+        ');
+
+        $stmt->bindValue(':token', $token, PDO::PARAM_STR);
+        $stmt->bindValue(':now', time(), PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }
