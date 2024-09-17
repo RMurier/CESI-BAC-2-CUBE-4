@@ -7,9 +7,9 @@ use \Core\View;
 use Exception;
 
 /**
- * Cookies controller
+ * Confidentialite controller
  */
-class Cookies extends \Core\Controller
+class Confidentialite extends \Core\Controller
 {
 
     /**
@@ -20,6 +20,6 @@ class Cookies extends \Core\Controller
      */
     public function politiqueAction()
     {
-        View::renderTemplate('Cookies/politique.html', []);
+        View::renderTemplate('Confidentialite/politique.html', []);
     }
 }

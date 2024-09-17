@@ -16,7 +16,6 @@
 
     <!-- Theme CSS -->
     <link href="/style/main.css" rel="stylesheet">
-    <link href="/style/footer.css" rel="stylesheet">
     <link href="/css/font-awesome.min.css" rel="stylesheet">
     <!-- font-family: 'Hind', sans-serif; -->
     <link href='https://fonts.googleapis.com/css?family=Hind:400,300,500,600,700|Hind+Guntur:300,400,500,700' rel='stylesheet' type='text/css'>
@@ -125,9 +124,10 @@
         <a href="#" class="btn mobile-menu-logout">Déconnexion</a>
     </div>
 </div>
-
-    {% block body %}
-    {% endblock %}
+    <div style="margin-bottom: 50px;">
+        {% block body %}
+        {% endblock %}
+    </div>
     <footer>
         <div class="container-fluid">
             <div class="row">
@@ -141,8 +141,8 @@
                     <div class="col-lg-11 col-sm-6 col-xs-12">
                         <div class="f-copy">
                             <ul class="list-inline">
-                                <li><a href="#">Politique relative aux cookies</a></li>
-                                <li><a href="#">Politique de confidentialité</a></li>
+                                <li><a href="/politiqueCookies">Politique relative aux cookies</a></li>
+                                <li><a href="/politiqueConfidentialite">Politique de confidentialité</a></li>
                                 <li>Copyright 2020 <a href="https://www.cesi.fr" class="hidden-xs">CESI</a></li>
                             </ul>
                         </div>
@@ -170,6 +170,7 @@
     padding: 10px, 0, 10px, 0 !important;
     display: flex;
     align-items: center;
+    background: #ffffff;
 }
 .align-center {
     align-items: center;
