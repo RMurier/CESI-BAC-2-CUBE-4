@@ -33,7 +33,8 @@ $router = new Core\Router();
 
 // Add the routes
 $router->add('', ['controller' => 'Home', 'action' => 'index']);
-$router->add('politiqueCookies', ['controller' => 'Cookies', 'action' => 'index']);
+$router->add('politiqueCookies', ['controller' => 'Cookies', 'action' => 'politique']);
+$router->add('politiqueConfidentialite', ['controller' => 'Confidentialite', 'action' => 'politique']);
 $router->add('login', ['controller' => 'User', 'action' => 'login']);
 $router->add('register', ['controller' => 'User', 'action' => 'register']);
 $router->add('logout', ['controller' => 'User', 'action' => 'logout', 'private' => true]);
