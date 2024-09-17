@@ -16,9 +16,8 @@
 
     <!-- Theme CSS -->
     <link href="/style/main.css" rel="stylesheet">
+    <link href="/style/footer.css" rel="stylesheet">
     <link href="/css/font-awesome.min.css" rel="stylesheet">
-    <link href="/css/font-circle-video.css" rel="stylesheet">
-
     <!-- font-family: 'Hind', sans-serif; -->
     <link href='https://fonts.googleapis.com/css?family=Hind:400,300,500,600,700|Hind+Guntur:300,400,500,700' rel='stylesheet' type='text/css'>
 
@@ -132,7 +131,7 @@
     <footer>
         <div class="container-fluid">
             <div class="row">
-                <div class="container padding-def">
+                <div class="container align-center">
                     <div class="col-lg-1  col-sm-2 col-xs-12 footer-logo">
                         <a class="navbar-brand" href="/">
                             <img src="/images/logo.png" alt="Vide Grenier en ligne" class="logo" />
@@ -173,3 +172,18 @@
     {% endblock %}
 </body>
 </html>
+<style>
+    footer {
+    position: fixed;
+    bottom: 0px;
+    text-align: center;
+    width: 100%;
+    padding: 10px, 0, 10px, 0 !important;
+    display: flex;
+    align-items: center;
+}
+.align-center {
+    align-items: center;
+    display: flex;
+}
+</style>
