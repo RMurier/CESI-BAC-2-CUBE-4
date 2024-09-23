@@ -42,6 +42,7 @@ $router->add('account', ['controller' => 'User', 'action' => 'account', 'private
 $router->add('product', ['controller' => 'Product', 'action' => 'index', 'private' => true]);
 $router->add('product/{id:\d+}', ['controller' => 'Product', 'action' => 'show']);
 $router->add('search/{name}', ['controller' => 'Search', 'action' => 'search']);
+$router->add('admin/statistics', ['controller' => 'Admin', 'action' => 'statistics', 'isAdmin' => true]);
 $router->add('{controller}/{action}');
 
 /*
@@ -53,6 +54,12 @@ try {
     switch($e->getMessage()){
         case 'You must be logged in':
             header('Location: /login');
+            break;
+        case 'Vous devez être admin':
+            header('Location: /');
+            break;
+        default:
+            header("Location: /");
             break;
     }
 }

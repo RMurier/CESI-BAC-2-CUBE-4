@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Statistiques{% endblock %}
+
+{% block body %}
+<link href="/css/statistics.css" rel="stylesheet">
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <h1>Statistiques de l'application</h1>
+        
+        <div class="row" id="row1">
+            <div class="col-lg-4">
+                <div class="stat-box">
+                    <h2>Utilisateurs</h2>
+                    <p>Total des utilisateurs : {{ total_users }}</p>
+                    <p>Total des administrateurs : {{ total_admins }}</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="stat-box">
+                    <h2>Produits</h2>
+                    <p>Total des produits : {{ total_products }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

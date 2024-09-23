@@ -125,6 +125,7 @@ class User extends \Core\Controller
             $_SESSION['user'] = [
                 'id' => $user['id'],
                 'username' => $user['username'],
+                'is_admin' => $user['is_admin']
             ];
 
             // Si l'utilisateur a coché "remember me", créer un cookie
@@ -172,6 +173,7 @@ class User extends \Core\Controller
                 $_SESSION['user'] = [
                     'id' => $user['id'],
                     'username' => $user['username'],
+                    'is_admin' => $user['is_admin']
                 ];
 
                 return true;
