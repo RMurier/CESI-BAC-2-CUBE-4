@@ -44,12 +44,12 @@
                         </div>
 
                         <div class="col-lg-6 col-sm-8 col-xs-3">
-                            <form action="search.html" method="post">
+                            <form onsubmit="redirectSearch(); return false;">
                                 <div class="topsearch">
                                     <i class="cv cvicon-cv-cancel topsearch-close"></i>
                                     <div class="input-group">
                                         <span class="input-group-addon" id="sizing-addon2"><i class="fa fa-search"></i></span>
-                                        <input type="text" class="form-control" placeholder="Rechercher..."
+                                        <input type="text" id="search-query" class="form-control" placeholder="Rechercher..."
                                             aria-describedby="sizing-addon2">
                                     </div>
                                 </div>
@@ -161,6 +161,13 @@
     {% endblock %}
 </body>
 </html>
+<script>
+     function redirectSearch() {
+        var query = document.getElementById("search-query").value;
+        
+        window.location.href = "/search/" + encodeURIComponent(query);
+    }
+</script>
 <style>
     footer {
     position: fixed;
