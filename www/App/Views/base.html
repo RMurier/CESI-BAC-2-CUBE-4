@@ -7,7 +7,7 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="/favicon.png">
+    <link rel="icon" href="images/logo.png">
 
     <title>Vide Grenier En Ligne | {% block title %}{% endblock %}</title>
 
@@ -67,6 +67,9 @@
                                     </button>
                                     <ul class="dropdown-menu">
                                         <li><a href="/account">Mon compte</a></li>
+                                        {% if user.is_admin %}
+                                            <li class="dropdown-submenu"><a tabindex="-1" href="/admin/statistics">Statistiques</a></li>
+                                        {% endif %}
                                         <li><a href="/logout">Déconnexion</a></li>
                                     </ul>
                                 </div>
