@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="col-md-6">
-            <form action="/send-email" method="POST">
+            <form action="/contact/{{ article.id }}/send" method="POST">
                 <div class="form-group">
                     <label for="name">Votre nom:</label>
                     <input type="text" class="form-control" id="name" name="name" required>
@@ -28,7 +28,6 @@
                     <label for="message">Message:</label>
                     <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
                 </div>
-                <input type="hidden" name="to_email" value="{{ article.email }}">
                 <button type="submit" class="btn btn-primary">Envoyer</button>
             </form>
         </div>

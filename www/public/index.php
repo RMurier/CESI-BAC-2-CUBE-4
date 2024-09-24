@@ -43,6 +43,7 @@ $router->add('product', ['controller' => 'Product', 'action' => 'index', 'privat
 $router->add('product/{id:\d+}', ['controller' => 'Product', 'action' => 'show']);
 $router->add('search/{name}', ['controller' => 'Search', 'action' => 'search']);
 $router->add('contact/{id:\d+}', ['controller' => 'Contact', 'action' => 'form']);
+$router->add('contact/{id:\d+}/send', ['controller' => 'Contact', 'action' => 'send']);
 $router->add('{controller}/{action}');
 
 /*
