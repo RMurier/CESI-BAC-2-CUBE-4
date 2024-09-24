@@ -51,8 +51,8 @@ class Articles extends Model {
 
         $stmt = $db->prepare('
             SELECT 
-                user.id as isUser,
-                user.name as username,
+                user.id as idUser,
+                user.username as username,
                 user.email as email,
                 user.password as password,
                 user.salt as salt,
@@ -64,7 +64,7 @@ class Articles extends Model {
                 articles.views as views,
                 articles.picture as picture
             FROM articles
-            INNER JOIN users as user ON articles.user_id = users.id
+            INNER JOIN users as user ON articles.user_id = user.id
             WHERE articles.id = ? 
             LIMIT 1');
         

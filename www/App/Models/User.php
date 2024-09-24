@@ -99,4 +99,20 @@ class User extends \Core\Model
 
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    public static function getOne($id)
+    {
+        $db = static::getDB();
+        $stmt = $db->prepare('
+            SELECT * 
+            FROM users  
+            WHERE id = ?
+        ');
+
+        $stmt->execute([$id]);
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+
 }

@@ -14,7 +14,7 @@ class Config
      * Database host
      * @var string
      */
-    const DB_HOST = '172.22.0.4:3306';
+    const DB_HOST = '172.20.0.10:3306';
 
     /**
      * Database name
