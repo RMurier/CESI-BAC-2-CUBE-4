@@ -54,10 +54,23 @@ class Articles extends Model {
             INNER JOIN users ON articles.user_id = users.id
             WHERE articles.id = ? 
             LIMIT 1');
-
+        
         $stmt->execute([$id]);
 
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public static function getById($id) {
+        $db = static::getDB();
+
+        $stmt = $db->prepare('
+            SELECT * FROM articles
+            WHERE articles.id = ? 
+            LIMIT 1');
+
+        $stmt->execute([$id]);
+
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 
     /**
@@ -114,6 +127,19 @@ class Articles extends Model {
 
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
+    /**
+     * Recherche les articles (ou produits) par nom
+     *
+     * @param string $name Le terme de recherche
+     * @return array Les articles correspondants
+     */
+    public static function searchByName($name)
+    {
+        $db = static::getDB();
+        $stmt = $db->prepare('SELECT * FROM articles WHERE name LIKE :name');        
+        $stmt->execute([':name' => '%' . $name . '%']);
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
 
 
 
@@ -151,8 +177,4 @@ class Articles extends Model {
 
         $stmt->execute();
     }
-
-
-
-
 }

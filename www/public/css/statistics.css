@@ -1,0 +1,89 @@
+#row1{
+    align-content: space-around;
+}
+
+.col-lg-4{
+    margin-bottom: 25px;
+}
+
+/* Styles généraux */
+    body {
+        font-family: 'Hind', sans-serif;
+        background-color: #f4f7f6;
+        color: #333;
+        margin: 0;
+        padding: 0;
+    }
+
+    h1, h2, h3, h4 {
+        color: #2c3e50;
+        margin-bottom: 15px;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    /* Boîte centrée avec ombre et padding */
+    .content-wrapper {
+        background-color: #ffffff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-top: 50px;
+    }
+
+    /* Style pour les cartes statistiques */
+    .stat-box {
+        background-color: #ecf0f1;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .stat-box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .stat-box h2 {
+        font-size: 24px;
+        margin-bottom: 10px;
+        color: #2980b9;
+    }
+
+    .stat-box p {
+        font-size: 18px;
+        color: #7f8c8d;
+    }
+
+    /* Boutons élégants */
+    button {
+        background-color: #2980b9;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #3498db;
+    }
+
+    /* Responsivité */
+    @media (max-width: 768px) {
+        .content-wrapper {
+            padding: 20px;
+        }
+
+        .stat-box {
+            margin-bottom: 20px;
+        }
+    }

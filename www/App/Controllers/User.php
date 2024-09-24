@@ -33,7 +33,7 @@ class User extends \Core\Controller
             }
         } else {
             // Afficher la page de login si le formulaire n'est pas soumis
-            View::renderTemplate('User/login.html');
+            View::renderTemplate('User/login.html', ['success' => 'Connexion réussie']);
         }
     }
 
@@ -62,7 +62,7 @@ class User extends \Core\Controller
             }
         }
 
-        View::renderTemplate('User/register.html');
+        View::renderTemplate('User/register.html', ['success' => 'Inscription réussie']);
     }
 
     /**
@@ -71,7 +71,6 @@ class User extends \Core\Controller
     public function accountAction()
     {
         $articles = Articles::getByUser($_SESSION['user']['id']);
-
         View::renderTemplate('User/account.html', [
             'articles' => $articles
         ]);
@@ -125,6 +124,7 @@ class User extends \Core\Controller
             $_SESSION['user'] = [
                 'id' => $user['id'],
                 'username' => $user['username'],
+                'is_admin' => $user['is_admin']
             ];
 
             // Si l'utilisateur a coché "remember me", créer un cookie
@@ -172,6 +172,7 @@ class User extends \Core\Controller
                 $_SESSION['user'] = [
                     'id' => $user['id'],
                     'username' => $user['username'],
+                    'is_admin' => $user['is_admin']
                 ];
 
                 return true;
