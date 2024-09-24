@@ -116,6 +116,16 @@ class Router
                 if(isset($this->params['private']) && !isset($_SESSION['user']['id'])){
                     throw new \Exception("You must be logged in");
                 }
+                if (isset($this->params['isAdmin'])) {
+                    // Vérifie si l'utilisateur est connecté et qu'il est admin
+                    if (!isset($_SESSION['user']['id'])) {
+                        throw new \Exception("You must be logged in");
+                    }
+                
+                    if (!isset($_SESSION['user']['is_admin']) || $_SESSION['user']['is_admin'] != 1) {
+                        throw new \Exception("Vous devez être admin");
+                    }
+                }           
 
                 $controller_object = new $controller($this->params);
 

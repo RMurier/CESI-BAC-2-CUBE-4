@@ -7,7 +7,7 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="/favicon.png">
+    <link rel="icon" href="images/logo.png">
 
     <title>Vide Grenier En Ligne | {% block title %}{% endblock %}</title>
 
@@ -43,7 +43,7 @@
                             </ul>
                         </div>
 
-                        <div class="col-lg-6 col-sm-8 col-xs-3">
+                        <div class="col-lg-6 col-sm-8">
                             <form onsubmit="redirectSearch(); return false;">
                                 <div class="topsearch">
                                     <i class="cv cvicon-cv-cancel topsearch-close"></i>
@@ -58,7 +58,7 @@
 
                         {% if user is not null %}
 
-                        <div class="col-lg-2 col-sm-4 hidden-xs">
+                        <div class="col-lg-2 col-sm-4">
                             <div class="selectuser pull-left">
                                 <div class="btn-group pull-right dropdown">
                                     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -67,6 +67,9 @@
                                     </button>
                                     <ul class="dropdown-menu">
                                         <li><a href="/account">Mon compte</a></li>
+                                        {% if user.is_admin %}
+                                            <li class="dropdown-submenu"><a tabindex="-1" href="/admin/statistics">Statistiques</a></li>
+                                        {% endif %}
                                         <li><a href="/logout">Déconnexion</a></li>
                                     </ul>
                                 </div>
