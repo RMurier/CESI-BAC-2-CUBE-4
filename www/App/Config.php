@@ -14,7 +14,7 @@ class Config
      * Database host
      * @var string
      */
-    const DB_HOST = '172.18.0.3:3306';
+    const DB_HOST = '172.18.0.2:3306';
 
     /**
      * Database name
@@ -39,4 +39,11 @@ class Config
      * @var boolean
      */
     const SHOW_ERRORS = true;
-}
+
+    
+    const SMTP_HOST = 'sandbox.smtp.mailtrap.io';
+    const SMTP_PORT = 2525;
+    const SMTP_USER = 'b011153ce18941';
+    const SMTP_PASSWORD = '9fecf77f8ae191';
+    
+}    

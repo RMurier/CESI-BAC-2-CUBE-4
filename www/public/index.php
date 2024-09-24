@@ -42,6 +42,8 @@ $router->add('account', ['controller' => 'User', 'action' => 'account', 'private
 $router->add('product', ['controller' => 'Product', 'action' => 'index', 'private' => true]);
 $router->add('product/{id:\d+}', ['controller' => 'Product', 'action' => 'show']);
 $router->add('search/{name}', ['controller' => 'Search', 'action' => 'search']);
+$router->add('contact/{id:\d+}', ['controller' => 'Contact', 'action' => 'form']);
+$router->add('contact/{id:\d+}/send', ['controller' => 'Contact', 'action' => 'send']);
 $router->add('admin/statistics', ['controller' => 'Admin', 'action' => 'statistics', 'isAdmin' => true]);
 $router->add('{controller}/{action}');
 

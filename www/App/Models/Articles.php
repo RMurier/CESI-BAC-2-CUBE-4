@@ -54,10 +54,23 @@ class Articles extends Model {
             INNER JOIN users ON articles.user_id = users.id
             WHERE articles.id = ? 
             LIMIT 1');
-
+        
         $stmt->execute([$id]);
 
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public static function getById($id) {
+        $db = static::getDB();
+
+        $stmt = $db->prepare('
+            SELECT * FROM articles
+            WHERE articles.id = ? 
+            LIMIT 1');
+
+        $stmt->execute([$id]);
+
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 
     /**
@@ -164,8 +177,4 @@ class Articles extends Model {
 
         $stmt->execute();
     }
-
-
-
-
 }

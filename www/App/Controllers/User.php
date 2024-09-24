@@ -71,7 +71,9 @@ class User extends \Core\Controller
     public function accountAction()
     {
         $articles = Articles::getByUser($_SESSION['user']['id']);
-
+        $_SESSION['error_message'] = "dzazadazda";  // Stocker le message d'erreur
+        header('Location: /'); // Rediriger vers la page où afficher l'erreur
+        exit();
         View::renderTemplate('User/account.html', [
             'articles' => $articles
         ]);
