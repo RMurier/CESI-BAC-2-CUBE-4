@@ -33,7 +33,7 @@ class User extends \Core\Controller
             }
         } else {
             // Afficher la page de login si le formulaire n'est pas soumis
-            View::renderTemplate('User/login.html');
+            View::renderTemplate('User/login.html', ['success' => 'Connexion réussie']);
         }
     }
 
@@ -62,7 +62,7 @@ class User extends \Core\Controller
             }
         }
 
-        View::renderTemplate('User/register.html');
+        View::renderTemplate('User/register.html', ['success' => 'Inscription réussie']);
     }
 
     /**
@@ -71,9 +71,6 @@ class User extends \Core\Controller
     public function accountAction()
     {
         $articles = Articles::getByUser($_SESSION['user']['id']);
-        $_SESSION['error_message'] = "dzazadazda";  // Stocker le message d'erreur
-        header('Location: /'); // Rediriger vers la page où afficher l'erreur
-        exit();
         View::renderTemplate('User/account.html', [
             'articles' => $articles
         ]);

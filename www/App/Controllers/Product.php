@@ -30,13 +30,13 @@ class Product extends \Core\Controller
             } else {
                 $pictureName = null;
             }
+            
             header('Location: /product/' . $id);
             exit();  
         } catch (\Exception $e) {
-            var_dump($e);
+            View::renderTemplate('Product/Add.html', ["error" => $e->getMessage()]);
         }
     }
-
     View::renderTemplate('Product/Add.html');
 }
 
