@@ -37,7 +37,7 @@ services:
       - ./www/sql:/docker-entrypoint-initdb.d
     networks:
       mynetwork:
-        ipv4_address: 172.20.0.10  # IP fixe
+        ipv4_address: 172.20.0.10
 
 networks:
   mynetwork:

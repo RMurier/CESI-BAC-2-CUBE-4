@@ -75,6 +75,9 @@
         }
 
         function renderProduct($product){
+            if($product.picture == null){
+                $product.picture = 'default.jpg';
+            }
             $('<div class="col-lg-4 col-md-6 col-sm-12 articleitem">' + 
                 '    <div class="b-article">' +
                 '        <div class="v-img">' +
