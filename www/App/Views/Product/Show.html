@@ -9,7 +9,6 @@
         <div class="row">
             <div class="col-lg-8 col-xs-12 col-sm-12">
                 <div class="preview-article">
-                    <!-- Vérifier si l'article a une image, sinon afficher une image par défaut -->
                     <img src="{{ article.picture ? ('/storage/' ~ article.picture) : '/storage/default.jpg' }}" alt="Image de l'article"/>
                 </div>
 
@@ -38,7 +37,7 @@
                     </div>
 
                     <div class="u-area mt-small">
-                        <a name="submit" href="mailto:{{article.email}}" class="btn btn-primary u-btn">Contacter {{article.username}}</a>
+                        <a href="/contact/{{ article.id }}" class="btn btn-primary u-btn">Contacter {{ article.username }}</a>
                     </div>
                 </div>
             </div>
