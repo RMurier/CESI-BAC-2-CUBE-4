@@ -31,11 +31,8 @@ class ArticlesTest extends TestCase
                  ->method('fetchAll')
                  ->willReturn([['id' => 1, 'name' => 'Test Article']]);
 
-        $this->articles->expects($this->once())
-                       ->method('getDB')
-                       ->willReturn($mockDB);
-
-        $result = $this->articles->getAll('');
+        // Appeler la méthode getAll() avec un objet mocké de PDO
+        $result = Articles::getAll('', $mockDB);
         $this->assertIsArray($result);
         $this->assertEquals(1, count($result));
     }
@@ -59,7 +56,7 @@ class ArticlesTest extends TestCase
 
         $mockStmt->expects($this->once())
                  ->method('fetchAll')
-                 ->willReturn([['idUser' => 1, 'username' => 'testuser']]);
+                 ->willReturn([['idUser' => 1, 'username' => 'utilisateur_test']]);
 
         $this->articles->expects($this->once())
                        ->method('getDB')
@@ -88,7 +85,7 @@ class ArticlesTest extends TestCase
 
         $mockStmt->expects($this->once())
                  ->method('fetch')
-                 ->willReturn(['id' => 1, 'name' => 'Test Article']);
+                 ->willReturn(['id' => 1, 'name' => 'Article Test']);
 
         $this->articles->expects($this->once())
                        ->method('getDB')
@@ -120,7 +117,7 @@ class ArticlesTest extends TestCase
                        ->willReturn($mockDB);
 
         $this->articles->addOneView(1);
-        $this->assertTrue(true);  // Just testing if no exceptions are thrown
+        $this->assertTrue(true);  // Teste simplement si aucune exception n'est levée
     }
 
     public function testGetByUser()
@@ -142,7 +139,7 @@ class ArticlesTest extends TestCase
 
         $mockStmt->expects($this->once())
                  ->method('fetchAll')
-                 ->willReturn([['id' => 1, 'name' => 'Test Article']]);
+                 ->willReturn([['id' => 1, 'name' => 'Article Test']]);
 
         $this->articles->expects($this->once())
                        ->method('getDB')
@@ -170,7 +167,7 @@ class ArticlesTest extends TestCase
 
         $mockStmt->expects($this->once())
                  ->method('fetchAll')
-                 ->willReturn([['id' => 1, 'name' => 'Test Article']]);
+                 ->willReturn([['id' => 1, 'name' => 'Article Test']]);
 
         $this->articles->expects($this->once())
                        ->method('getDB')
@@ -199,7 +196,7 @@ class ArticlesTest extends TestCase
 
         $mockStmt->expects($this->once())
                  ->method('fetchAll')
-                 ->willReturn([['id' => 1, 'name' => 'Test Article']]);
+                 ->willReturn([['id' => 1, 'name' => 'Article Test']]);
 
         $this->articles->expects($this->once())
                        ->method('getDB')
@@ -233,7 +230,7 @@ class ArticlesTest extends TestCase
                        ->method('getDB')
                        ->willReturn($mockDB);
 
-        $data = ['name' => 'Test Article', 'description' => 'Test Desc', 'user_id' => 1];
+        $data = ['name' => 'Article Test', 'description' => 'Test Desc', 'user_id' => 1];
         $result = $this->articles->save($data);
         $this->assertEquals(1, $result);
     }
