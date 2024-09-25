@@ -1,47 +1,49 @@
+version: '3.8'
+
 services:
   web:
     image: nginx:1.25-alpine
-    container_name: ${PROJECT_NAME}_nginx
+    container_name: ${PROJECT_NAME_QUA}_nginx
     ports:
-    - "80:80"
+      - "9090:80"
     environment:
-      - PROJECT_NAME=${PROJECT_NAME}
+      - PROJECT_NAME=${PROJECT_NAME_QUA}
     volumes:
-      - "./www:/var/www/${PROJECT_NAME}:rw"
-      - "./.docker/nginx/nginx.conf:/etc/nginx/conf.d/site.template:rw"
+      - "./www:/var/www/${PROJECT_NAME_QUA}:ro"
+      - "./.docker/nginx/nginx.conf:/etc/nginx/conf.d/site.template:ro"
     command: sh -c "envsubst '$$PROJECT_NAME' < /etc/nginx/conf.d/site.template > /etc/nginx/conf.d/default.conf && exec nginx -g 'daemon off;'"
     networks:
-      mynetwork:
+      - qua-network
 
   php:
     build: ./.docker/php
-    working_dir: /var/www/${PROJECT_NAME}
-    container_name: ${PROJECT_NAME}_php
+    working_dir: /var/www/${PROJECT_NAME_QUA}
+    container_name: ${PROJECT_NAME_QUA}_php
     volumes:
-      - "./www:/var/www/${PROJECT_NAME}:rw"
-    command: bash -c "composer install && php-fpm"
+      - "./www:/var/www/${PROJECT_NAME_QUA}:ro"
+    command: php-fpm
     networks:
-      mynetwork:
+      - qua-network
 
-  mysql: 
+  mysql:
     image: mysql:8.0
-    container_name: ${PROJECT_NAME}_mysql
+    container_name: ${PROJECT_NAME_QUA}_mysql
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     ports:
-      - "3306:3306"
+      - "3307:3306"
     volumes:
       - ./www/sql:/docker-entrypoint-initdb.d
     networks:
-      mynetwork:
-        ipv4_address: 172.10.0.10
+      qua-network:
+        ipv4_address: 172.30.0.20
 
 networks:
-  mynetwork:
+  qua-network:
     driver: bridge
     ipam:
       config:
-        - subnet: 172.10.0.0/16
+        - subnet: 172.30.0.0/16
