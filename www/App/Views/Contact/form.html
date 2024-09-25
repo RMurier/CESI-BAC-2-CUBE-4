@@ -35,18 +35,15 @@
 </div>
 <script>
     document.getElementById('formContact').addEventListener('submit', function(event) {
-  event.preventDefault(); // Empêche l'envoi par défaut du formulaire
+  event.preventDefault(); 
 
-  // Appeler votre fonction JS ici
   triggerFunction();
 
-  // Si vous souhaitez continuer avec l'envoi du formulaire après votre fonction JS
-  this.submit(); // Vous pouvez utiliser cette ligne pour continuer l'envoi du formulaire après la fonction JS
+  this.submit(); 
 });
 
 function triggerFunction() {
     toastr.success("Envoi de mail effectué avec succès")
-    // Votre code JavaScript à exécuter ici
 }
 </script>
 {% endblock %}
