@@ -5,14 +5,8 @@ namespace Core;
 use PDO;
 use App\Config;
 
-/**
- * Base model
- *
- * PHP version 7.0
- */
 abstract class Model
 {
-
     /**
      * Get the PDO database connection
      *
@@ -23,7 +17,7 @@ abstract class Model
         static $db = null;
 
         if ($db === null) {
-            $dsn = 'mysql:host=' . Config::$DB_HOST . ';dbname=' . Config::DB_NAME . ';charset=utf8mb4';
+            $dsn = 'mysql:host=' . Config::DB_HOST . ';dbname=' . Config::DB_NAME . ';charset=utf8mb4';
             $db = new PDO($dsn, Config::DB_USER, Config::DB_PASSWORD);
 
             // Throw an Exception when an error occurs
