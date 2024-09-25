@@ -24,6 +24,8 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
     && php composer-setup.php --install-dir=/usr/bin/ --filename=composer \
     && php -r "unlink('composer-setup.php');"
 
+RUN composer install
+
 COPY ./php.ini /usr/local/etc/php/
 
 RUN usermod -u 1000 www-data
