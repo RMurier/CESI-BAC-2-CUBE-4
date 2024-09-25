@@ -16,6 +16,9 @@ services:
       - dev-network
 
   php:
+    environment:
+      - DB_HOST=172.20.0.10
+      - DB_PORT=3308
     build: ./.docker/php
     working_dir: /var/www/${PROJECT_NAME_DEV}
     container_name: ${PROJECT_NAME_DEV}_php

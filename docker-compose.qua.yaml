@@ -16,6 +16,9 @@ services:
       - qua-network
 
   php:
+    environment:
+      - DB_HOST=172.30.0.20
+      - DB_PORT=3307
     build: ./.docker/php
     working_dir: /var/www/${PROJECT_NAME_QUA}
     container_name: ${PROJECT_NAME_QUA}_php
