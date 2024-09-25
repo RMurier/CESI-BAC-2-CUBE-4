@@ -50,9 +50,9 @@ class Config
         $dbHost = getenv("DB_HOST");
 
         if ($dbHost == "172.20.0.10") {
-            self::$DB_HOST = "172.20.0.10:3308";
+            self::$DB_HOST = "172.20.0.10:3306";
         } elseif ($dbHost == "172.30.0.20") {
-            self::$DB_HOST = "172.30.0.20:3307";
+            self::$DB_HOST = "172.30.0.20:3306";
         } elseif ($dbHost == "172.10.0.10") {
             self::$DB_HOST = "172.10.0.10:3306";
         } else {
