@@ -30,6 +30,9 @@
         - nom: admin
         - mot de passe: admin
 
+- **Swagger**
+    - Le swagger est disponible sur la route /swaggerv1.
+
 - **Lancer un environnement de test / qualification / production**
     - Voici la commande à exécuter pour chaque environnement : 
     - **Dev**:
