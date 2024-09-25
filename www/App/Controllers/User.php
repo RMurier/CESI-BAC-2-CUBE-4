@@ -33,7 +33,7 @@ class User extends \Core\Controller
             }
         } else {
             // Afficher la page de login si le formulaire n'est pas soumis
-            View::renderTemplate('User/login.html', ['success' => 'Connexion réussie']);
+            View::renderTemplate('User/login.html');
         }
     }
 
@@ -62,7 +62,7 @@ class User extends \Core\Controller
             }
         }
 
-        View::renderTemplate('User/register.html', ['success' => 'Inscription réussie']);
+        View::renderTemplate('User/register.html');
     }
 
     /**
