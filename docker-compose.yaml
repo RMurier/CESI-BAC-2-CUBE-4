@@ -1,6 +1,8 @@
+version: '3.8'
+
 services:
   web:
-    image: nginx:1.25-alpine
+    image: nginx:1.25
     container_name: ${PROJECT_NAME}_nginx
     ports:
     - "80:80"
