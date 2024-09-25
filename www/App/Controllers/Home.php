@@ -23,4 +23,8 @@ class Home extends \Core\Controller
 
         View::renderTemplate('Home/index.html', []);
     }
+
+    public function swaggerAction(){
+        View::renderTemplate('Swagger/index.html', []);
+    }
 }
