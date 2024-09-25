@@ -1,0 +1,302 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Vide grenier en ligne",
+        "version": "1.0",
+        "description": "API documentation pour Vide grenier en ligne",
+        "contact": {
+            "email": "support@videgrenierenligne.com"
+        }
+    },
+    "paths": {
+        "/account/accountpage": {
+            "get": {
+                "tags": [
+                    "Account"
+                ],
+                "summary": "Afficher la page de compte",
+                "description": "Cette requ\u00eate permet d'afficher la page de compte de l'utilisateur.",
+                "responses": {
+                    "200": {
+                        "description": "Op\u00e9ration r\u00e9ussie"
+                    },
+                    "400": {
+                        "description": "Requ\u00eate incorrecte"
+                    }
+                }
+            }
+        },
+        "/account/sendtestemail": {
+            "post": {
+                "tags": [
+                    "Account"
+                ],
+                "summary": "Envoyer un email de test",
+                "description": "Envoie un email de test via PHPMailer.",
+                "responses": {
+                    "200": {
+                        "description": "Email envoy\u00e9 avec succ\u00e8s"
+                    },
+                    "400": {
+                        "description": "Requ\u00eate incorrecte"
+                    }
+                }
+            }
+        },
+        "/admin/statisticsaction": {
+            "get": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "Obtenir les statistiques de l'admin",
+                "description": "R\u00e9cup\u00e8re et affiche les statistiques de l'administration.",
+                "responses": {
+                    "200": {
+                        "description": "Statistiques r\u00e9cup\u00e9r\u00e9es avec succ\u00e8s"
+                    },
+                    "400": {
+                        "description": "Requ\u00eate incorrecte"
+                    }
+                }
+            }
+        },
+        "/api/productsaction": {
+            "get": {
+                "tags": [
+                    "Api"
+                ],
+                "summary": "Obtenir la liste des produits",
+                "description": "R\u00e9cup\u00e8re la liste des produits disponibles via l'API.",
+                "responses": {
+                    "200": {
+                        "description": "Op\u00e9ration r\u00e9ussie"
+                    },
+                    "400": {
+                        "description": "Requ\u00eate incorrecte"
+                    }
+                }
+            }
+        },
+        "/api/citiesaction": {
+            "get": {
+                "tags": [
+                    "Api"
+                ],
+                "summary": "Obtenir la liste des villes",
+                "description": "R\u00e9cup\u00e8re la liste des villes via l'API.",
+                "responses": {
+                    "200": {
+                        "description": "Op\u00e9ration r\u00e9ussie"
+                    },
+                    "400": {
+                        "description": "Requ\u00eate incorrecte"
+                    }
+                }
+            }
+        },
+        "/confidentialite/politiqueaction": {
+            "get": {
+                "tags": [
+                    "Confidentialite"
+                ],
+                "summary": "Afficher la politique de confidentialit\u00e9",
+                "description": "Cette requ\u00eate permet d'afficher la politique de confidentialit\u00e9.",
+                "responses": {
+                    "200": {
+                        "description": "Op\u00e9ration r\u00e9ussie"
+                    },
+                    "400": {
+                        "description": "Requ\u00eate incorrecte"
+                    }
+                }
+            }
+        },
+        "/contact/formaction": {
+            "get": {
+                "tags": [
+                    "Contact"
+                ],
+                "summary": "Afficher le formulaire de contact",
+                "description": "Permet d'afficher le formulaire de contact.",
+                "responses": {
+                    "200": {
+                        "description": "Op\u00e9ration r\u00e9ussie"
+                    },
+                    "400": {
+                        "description": "Requ\u00eate incorrecte"
+                    }
+                }
+            }
+        },
+        "/contact/sendaction": {
+            "post": {
+                "tags": [
+                    "Contact"
+                ],
+                "summary": "Envoyer un message de contact",
+                "description": "Cette requ\u00eate permet d'envoyer un message de contact.",
+                "responses": {
+                    "200": {
+                        "description": "Message envoy\u00e9 avec succ\u00e8s"
+                    },
+                    "400": {
+                        "description": "Requ\u00eate incorrecte"
+                    }
+                }
+            }
+        },
+        "/home/indexaction": {
+            "get": {
+                "tags": [
+                    "Home"
+                ],
+                "summary": "Page d'accueil",
+                "description": "Affiche la page d'accueil de l'application.",
+                "responses": {
+                    "200": {
+                        "description": "Op\u00e9ration r\u00e9ussie"
+                    },
+                    "400": {
+                        "description": "Requ\u00eate incorrecte"
+                    }
+                }
+            }
+        },
+        "/home/swaggeraction": {
+            "get": {
+                "tags": [
+                    "Home"
+                ],
+                "summary": "Afficher la documentation Swagger",
+                "description": "Cette requ\u00eate permet d'afficher la documentation Swagger.",
+                "responses": {
+                    "200": {
+                        "description": "Op\u00e9ration r\u00e9ussie"
+                    },
+                    "400": {
+                        "description": "Requ\u00eate incorrecte"
+                    }
+                }
+            }
+        },
+        "/product/indexaction": {
+            "get": {
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Afficher la liste des produits",
+                "description": "R\u00e9cup\u00e8re et affiche la liste des produits disponibles.",
+                "responses": {
+                    "200": {
+                        "description": "Op\u00e9ration r\u00e9ussie"
+                    },
+                    "400": {
+                        "description": "Requ\u00eate incorrecte"
+                    }
+                }
+            }
+        },
+        "/product/showaction": {
+            "get": {
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Afficher un produit",
+                "description": "Affiche les d\u00e9tails d'un produit sp\u00e9cifique.",
+                "responses": {
+                    "200": {
+                        "description": "Op\u00e9ration r\u00e9ussie"
+                    },
+                    "400": {
+                        "description": "Requ\u00eate incorrecte"
+                    }
+                }
+            }
+        },
+        "/search/searchaction": {
+            "get": {
+                "tags": [
+                    "Search"
+                ],
+                "summary": "Rechercher un produit",
+                "description": "Permet de rechercher un produit par des crit\u00e8res d\u00e9finis.",
+                "responses": {
+                    "200": {
+                        "description": "Op\u00e9ration r\u00e9ussie"
+                    },
+                    "400": {
+                        "description": "Requ\u00eate incorrecte"
+                    }
+                }
+            }
+        },
+        "/user/loginaction": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Connexion utilisateur",
+                "description": "Permet \u00e0 un utilisateur de se connecter.",
+                "responses": {
+                    "200": {
+                        "description": "Connexion r\u00e9ussie"
+                    },
+                    "400": {
+                        "description": "Requ\u00eate incorrecte"
+                    }
+                }
+            }
+        },
+        "/user/registeraction": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Inscription d'un utilisateur",
+                "description": "Permet \u00e0 un nouvel utilisateur de s'inscrire.",
+                "responses": {
+                    "200": {
+                        "description": "Inscription r\u00e9ussie"
+                    },
+                    "400": {
+                        "description": "Requ\u00eate incorrecte"
+                    }
+                }
+            }
+        },
+        "/user/accountaction": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Afficher le compte utilisateur",
+                "description": "Affiche les informations du compte de l'utilisateur.",
+                "responses": {
+                    "200": {
+                        "description": "Op\u00e9ration r\u00e9ussie"
+                    },
+                    "400": {
+                        "description": "Requ\u00eate incorrecte"
+                    }
+                }
+            }
+        },
+        "/user/logoutaction": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "D\u00e9connexion utilisateur",
+                "description": "Permet \u00e0 un utilisateur de se d\u00e9connecter.",
+                "responses": {
+                    "200": {
+                        "description": "D\u00e9connexion r\u00e9ussie"
+                    },
+                    "400": {
+                        "description": "Requ\u00eate incorrecte"
+                    }
+                }
+            }
+        }
+    }
+}

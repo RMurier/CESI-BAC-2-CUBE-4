@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  web:
+    image: nginx:1.25-alpine
+    container_name: ${PROJECT_NAME_DEV}_nginx
+    ports:
+      - "8080:80"
+    environment:
+      - PROJECT_NAME=${PROJECT_NAME_DEV}
+    volumes:
+      - "./www:/var/www/${PROJECT_NAME_DEV}:rw"
+      - "./.docker/nginx/nginx.conf:/etc/nginx/conf.d/site.template:rw"
+    command: sh -c "envsubst '$$PROJECT_NAME' < /etc/nginx/conf.d/site.template > /etc/nginx/conf.d/default.conf && exec nginx -g 'daemon off;'"
+    networks:
+      - dev-network
+
+  php:
+    environment:
+      - DB_HOST=172.20.0.10
+      - DB_PORT=3308
+    build: ./.docker/php
+    working_dir: /var/www/${PROJECT_NAME_DEV}
+    container_name: ${PROJECT_NAME_DEV}_php
+    volumes:
+      - "./www:/var/www/${PROJECT_NAME_DEV}:rw"
+    command: bash -c "composer install && php-fpm"
+    networks:
+      - dev-network
+
+  mysql:
+    image: mysql:8.0
+    container_name: ${PROJECT_NAME_DEV}_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - "3308:3306"
+    volumes:
+      - ./www/sql:/docker-entrypoint-initdb.d
+    networks:
+      dev-network:
+        ipv4_address: 172.20.0.10
+
+networks:
+  dev-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16

@@ -50,14 +50,40 @@ class Articles extends Model {
         $db = static::getDB();
 
         $stmt = $db->prepare('
+            SELECT 
+                user.id as idUser,
+                user.username as username,
+                user.email as email,
+                user.password as password,
+                user.salt as salt,
+                user.is_admin as is_admin,
+                articles.id as idArticle,
+                articles.name as name,
+                articles.description as description,
+                articles.published_date as published_date,
+                articles.views as views,
+                articles.picture as picture
+            FROM articles
+            INNER JOIN users as user ON articles.user_id = user.id
+            WHERE articles.id = ? 
+            LIMIT 1');
+        
+        $stmt->execute([$id]);
+
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public static function getById($id) {
+        $db = static::getDB();
+
+        $stmt = $db->prepare('
             SELECT * FROM articles
-            INNER JOIN users ON articles.user_id = users.id
             WHERE articles.id = ? 
             LIMIT 1');
 
         $stmt->execute([$id]);
 
-        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 
     /**
@@ -114,6 +140,19 @@ class Articles extends Model {
 
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
+    /**
+     * Recherche les articles (ou produits) par nom
+     *
+     * @param string $name Le terme de recherche
+     * @return array Les articles correspondants
+     */
+    public static function searchByName($name)
+    {
+        $db = static::getDB();
+        $stmt = $db->prepare('SELECT * FROM articles WHERE name LIKE :name');        
+        $stmt->execute([':name' => '%' . $name . '%']);
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
 
 
 
@@ -151,8 +190,4 @@ class Articles extends Model {
 
         $stmt->execute();
     }
-
-
-
-
 }

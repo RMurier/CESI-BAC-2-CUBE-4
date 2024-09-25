@@ -4,10 +4,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="/favicon.png">
+    <link rel="icon" href="images/logo.png">
+    <script src="/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
     <title>Vide Grenier En Ligne | {% block title %}{% endblock %}</title>
 
@@ -19,9 +21,12 @@
     <link href="/css/font-awesome.min.css" rel="stylesheet">
     <!-- font-family: 'Hind', sans-serif; -->
     <link href='https://fonts.googleapis.com/css?family=Hind:400,300,500,600,700|Hind+Guntur:300,400,500,700' rel='stylesheet' type='text/css'>
-
+    
+    
 </head>
 <body style="height: 100%;">
+    <div id="error-container" data-error-message="{{ error }}"></div>
+    <div id="success-container" data-success-message="{{ success }}"></div>
  <div class="content">
     <div class="container-fluid ">
         <div class="row">
@@ -37,28 +42,28 @@
                                 <span>Vide Grenier en ligne</span>
                             </a>
                         </div>
-                        <div class="col-lg-3 col-sm-10 hidden-xs">
+                        <div class="col-lg-3 col-sm-10">
                             <ul class="list-inline menu">
                                 <li class="color-active"><a href="/product">Déposer une annonce</a></li>
                             </ul>
                         </div>
 
-                        <div class="col-lg-6 col-sm-8 col-xs-3">
-                            <!--<form action="search.html" method="post">
+                        <div class="col-lg-6 col-sm-8">
+                            <form onsubmit="redirectSearch(); return false;">
                                 <div class="topsearch">
                                     <i class="cv cvicon-cv-cancel topsearch-close"></i>
                                     <div class="input-group">
                                         <span class="input-group-addon" id="sizing-addon2"><i class="fa fa-search"></i></span>
-                                        <input type="text" class="form-control" placeholder="Rechercher..."
+                                        <input type="text" id="search-query" class="form-control" placeholder="Rechercher..."
                                             aria-describedby="sizing-addon2">
                                     </div>
                                 </div>
-                            </form>-->
+                            </form>
                         </div>
 
                         {% if user is not null %}
 
-                        <div class="col-lg-2 col-sm-4 hidden-xs">
+                        <div class="col-lg-2 col-sm-4">
                             <div class="selectuser pull-left">
                                 <div class="btn-group pull-right dropdown">
                                     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -67,6 +72,9 @@
                                     </button>
                                     <ul class="dropdown-menu">
                                         <li><a href="/account">Mon compte</a></li>
+                                        {% if user.is_admin %}
+                                            <li class="dropdown-submenu"><a tabindex="-1" href="/admin/statistics">Statistiques</a></li>
+                                        {% endif %}
                                         <li><a href="/logout">Déconnexion</a></li>
                                     </ul>
                                 </div>
@@ -75,7 +83,7 @@
                         </div>
 
                         {% else %}
-                        <div class="col-lg-2 col-sm-12 hidden-xs">
+                        <div class="col-lg-2 col-sm-12">
                             <div class="loginsignup pull-right">
                                 <a href="/login">Connexion</a> . <a href="/register">Inscription</a>
                             </div>
@@ -152,7 +160,6 @@
         </div>
     </footer>
     <!-- /footer -->
-    <script src="/js/jquery.min.js"></script>
     <script src="/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/xcash/bootstrap-autocomplete@v2.3.7/dist/latest/bootstrap-autocomplete.min.js"></script>
     <script src="/js/custom.js"></script>
@@ -161,6 +168,13 @@
     {% endblock %}
 </body>
 </html>
+<script>
+     function redirectSearch() {
+        var query = document.getElementById("search-query").value;
+        
+        window.location.href = "/search/" + encodeURIComponent(query);
+    }
+</script>
 <style>
     footer {
     position: fixed;
@@ -177,3 +191,25 @@
     display: flex;
 }
 </style>
+<script>
+    const errorContainer = document.getElementById('error-container');
+    const errorMessage = errorContainer ? errorContainer.getAttribute('data-error-message') : null;
+
+    if (errorMessage) {
+        toastr.error(errorMessage, {
+            timeOut: 4000,
+            positionClass: "toast-top-right"
+        });
+    }
+</script>
+<script>
+    const successContainer = document.getElementById('success-container');
+    const successMessage = errorContainer ? successContainer.getAttribute('data-success-message') : null;
+
+    if (successMessage) {
+        toastr.success(successMessage, {
+            timeOut: 4000,
+            positionClass: "toast-top-right"
+        });
+    }
+</script>

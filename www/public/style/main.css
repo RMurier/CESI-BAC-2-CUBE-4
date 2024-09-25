@@ -1468,12 +1468,7 @@ ul.menu ul li:not(:last-child) {
     background-color: transparent;
   }
 }
-@media only screen and (max-width: 767px) {
-  .navbar-container:not(.search-open) input,
-  .navbar-container:not(.search-open) .input-group-btn {
-    display: none !important;
-  }
-}
+
 @media only screen and (max-width: 767px) {
   .navbar-container.search-open .topsearch {
     position: absolute;

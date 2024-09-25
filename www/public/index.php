@@ -5,6 +5,8 @@
  *
  * PHP version 7.0
  */
+require_once '../App/Config.php';
+\App\Config::init();
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -41,6 +43,11 @@ $router->add('logout', ['controller' => 'User', 'action' => 'logout', 'private' 
 $router->add('account', ['controller' => 'User', 'action' => 'account', 'private' => true]);
 $router->add('product', ['controller' => 'Product', 'action' => 'index', 'private' => true]);
 $router->add('product/{id:\d+}', ['controller' => 'Product', 'action' => 'show']);
+$router->add('search/{name}', ['controller' => 'Search', 'action' => 'search']);
+$router->add('contact/{id:\d+}', ['controller' => 'Contact', 'action' => 'form']);
+$router->add('contact/{id:\d+}/send', ['controller' => 'Contact', 'action' => 'send']);
+$router->add('swaggerv1', ['controller' => 'Home', 'action' => 'swagger']);
+$router->add('admin/statistics', ['controller' => 'Admin', 'action' => 'statistics', 'isAdmin' => true]);
 $router->add('{controller}/{action}');
 
 /*
@@ -52,6 +59,12 @@ try {
     switch($e->getMessage()){
         case 'You must be logged in':
             header('Location: /login');
+            break;
+        case 'Vous devez être admin':
+            header('Location: /');
+            break;
+        default:
+            header("Location: /");
             break;
     }
 }
