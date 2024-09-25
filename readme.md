@@ -27,7 +27,7 @@
     nom: admin
     mot de passe: admin
 
-- **Lancer un environnement de test / qualification**
+- **Lancer un environnement de test / qualification / production**
     Voici la commande à exécuter pour chaque environnement : 
     - **Dev**:
         - Commande à executer
