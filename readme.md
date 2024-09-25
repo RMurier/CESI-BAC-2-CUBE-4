@@ -10,10 +10,13 @@
     L’objectif principal est de corriger et améliorer l’application livrée par un prestataire précédent. Le site doit être stable, sans erreurs pour garantir une bonne expérience utilisateur, avant une présentation imminente à des investisseurs.
 
 - **Liste des logiciels installés**
-
-- **Procédure d'installation des postes clients**
-
-- **CheckList de validation** 
+    Nom  | Version
+    ------------- | -------------
+    twig/twig  | ~3.0
+    ext-pdo  | *
+    ext-json  | *
+    phpmailer/phpmailer  | ^6.9
+    phpunit/phpunit  | ^10.0
 
 - **Sauvegarde / réstauration de la base de données**
     Pour sauvegarder la base de données, vous avez un fichier dump_db.sh.
