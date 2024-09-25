@@ -27,21 +27,21 @@ services:
     image: mysql:8.0
     container_name: ${PROJECT_NAME}_mysql
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}  
-      MYSQL_DATABASE: ${MYSQL_DATABASE}       
-      MYSQL_USER: ${MYSQL_USER}                  
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}      
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     ports:
       - "3306:3306"
     volumes:
       - ./www/sql:/docker-entrypoint-initdb.d
     networks:
       mynetwork:
-        ipv4_address: 172.20.0.10
+        ipv4_address: 172.10.0.10
 
 networks:
   mynetwork:
     driver: bridge
     ipam:
       config:
-        - subnet: 172.20.0.0/16
+        - subnet: 172.10.0.0/16
